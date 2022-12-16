@@ -1,0 +1,102 @@
+﻿@model List<string>
+@inject IViewLocalizer language
+@inject IHttpContextAccessor _httpContextAccessor
+@{
+    var languages = Model;
+    string firstLanguage = string.Empty;
+    string culture = string.Empty;
+    string languageData = _httpContextAccessor?.HttpContext?.Request.Headers["Accept-Language"].FirstOrDefault();//browser dili
+    string cookieValueFromContext = _httpContextAccessor.HttpContext.Request.Cookies[".AspNetCore.Culture"];
+    if (!string.IsNullOrEmpty(cookieValueFromContext))
+    {
+        culture = cookieValueFromContext.Substring(2, 5);
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(languageData) && languageData.Contains(","))//browser multiple language
+        {
+            string splitLanguage = languageData.Split(",")[0];
+            if (splitLanguage == "en")
+            {
+                culture = splitLanguage + "-" + "US";
+            }
+            else
+            {
+                culture = splitLanguage + "-" + splitLanguage.ToUpper();
+            }
+        }
+        else
+        {
+            if (languageData == "en")
+            {
+                culture = languageData + "-" + "US";
+            }
+            else
+            {
+                culture = languageData + "-" + languageData.ToUpper();
+            }
+        }
+    }
+    var filePath = $"Resources/{culture}.json";
+    bool curl = File.Exists(filePath) ? true : false;
+    if (!curl)
+    {
+        culture = "tr-TR";
+    }
+    @foreach (var item in languages)
+    {
+        if (culture == @item.Split("_")[0])
+        {
+            firstLanguage = @item.Split("_")[1];
+        }
+    }
+}
+<ul class="nav navbar-nav" id="menuitem">
+    <li><a asp-controller="Home" asp-action="ResetPassword">@language["layoutMenuReset"]</a></li>
+    <li><a asp-controller="Home" asp-action="Unlock">@language["layoutMenuUnlock"]</a></li>
+</ul>
+
+<div class="nav navbar-nav navbar-right" id="LanguageMenu">
+    <div class="dropdown ">
+        <button id="dropdownMenuButton" class="btn  dropdown-toggle" type="button"
+                data-toggle="dropdown">
+            @firstLanguage
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var item in languages)
+            {
+                <li>
+                    <a href="@Url.Action("ChangeLanguage", "Home", new { culture = @item.Split("_")[0] })">
+                        <div id="dropdownItem">
+                            @item.Split("_")[1]
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

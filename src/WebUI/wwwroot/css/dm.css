@@ -1,0 +1,89 @@
+﻿#imgLogo {
+    max-width: 240px;
+    max-height: 40px;
+}
+
+.nopadding {
+    padding: 0;
+}
+
+.marginbottom10 {
+    margin-bottom: 10px;
+}
+
+.container {
+    width: auto;
+}
+
+.table-responsive {
+    overflow-x: visible !important;
+}
+
+.divSeparator {
+    margin-bottom: 15px;
+    margin-top: -15px;
+    width: 100%;
+    height: 1px;
+}
+a:link, visited, hover, active {
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    min-width: 0;
+    width: 105%;
+}
+
+#menuitem li :hover {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+
+/*BURDAN İTİBAREN MÜŞTERİ BAZLI DEĞİŞECEK*/
+/*BAŞLANGIÇ*/
+
+.panel-primary > .panel-heading {
+    background-color: #F78300;
+    border-color: #F78300;
+    background-image: linear-gradient(to bottom,#F78300,#EF7B00 100%);
+}
+
+.panel-primary {
+    border-color: #F78300;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #F78300;
+}
+
+a {
+    color: #F78300;
+}
+
+.divSeparator {
+    background-color: #F78300;
+}
+
+
+.capturebackground {
+    background-image: url('../img/captcha.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #F78300;
+    text-align: center;
+    font-size: 25px;
+    font-weight: normal;
+    font-family: 'Segoe UI';
+    height: 50px;
+}
+#dropdownMenuButton {
+    background-color: transparent;
+    color: #F78300;
+}
+
+#dropdownItem {
+    color: #F78300;
+}
+/*BİTİŞ*/

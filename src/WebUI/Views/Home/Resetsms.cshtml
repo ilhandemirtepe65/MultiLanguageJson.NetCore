@@ -1,0 +1,45 @@
+﻿@model string
+@inject IOptions<Settings> _option
+@inject IViewLocalizer language
+@{
+    var message = Model;
+}
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@language["sendSms"]</div>
+        <div class="panel-body">
+            <form method="POST" onsubmit="return false">
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                        <div class="alert alert-warning" role="alert">
+                            <div id="telephoneNumber">
+                                <label>@message </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                        <label>@language["smsCode"]</label>
+                        <input class="form-control" type="text" id="SmsCode" />
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <div class="divSeparator" style="margin-top:0px;"></div>
+                    <input type="submit" value="@language["checkIt"]" class="btn btn-default" id="sendSmsToTelephone" onclick="SendSms()" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                        <div class="alert alert-warning" role="alert">
+                            <span id="timer">
+                            </span>
+                            <input id="timerCount" type="hidden" />
+                        </div>
+                    </div>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+</body>
+ <input type="hidden" id="resetsmsTimeOut" name="resetsmsTimeOut" value="_options.Value.VVerificationCodeTimeout" />
